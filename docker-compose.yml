@@ -1,0 +1,15 @@
+services:
+  grafana:
+    image: grafana/grafana-enterprise:latest
+    container_name: grafana
+    ports:
+      - 4000:3000
+    environment:
+      - GF_SERVER_ROOT_URL=http://localhost:4000/
+      - GF_PLUGINS_PREINSTALL=grafana-clock-panel
+    volumes:
+      - grafana-storage:/var/lib/grafana
+    restart: unless-stopped
+
+volumes:
+  grafana-storage:
