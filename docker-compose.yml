@@ -9,7 +9,15 @@ services:
       - GF_PLUGINS_PREINSTALL=grafana-clock-panel
     volumes:
       - grafana-storage:/var/lib/grafana
+      - ./provisioning:/etc/grafana/provisioning
     restart: unless-stopped
+    networks:
+      - monitoring
 
 volumes:
   grafana-storage:
+
+networks:
+  monitoring:
+    external: true
+    name: ser_prometheus_monitoring
